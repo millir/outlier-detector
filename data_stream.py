@@ -1,5 +1,5 @@
 import math
-from util import get_date
+from util import get_datetime
 
 class DataStream:
     def __init__(self) -> None:
@@ -11,7 +11,7 @@ class DataStream:
         self.M2 = 0.0
 
     def add_point(self, date, price):
-        self.date = get_date(date)
+        self.date = get_datetime(date)
         self.timestamp = self.date.timestamp()
         self.price = float(price)
 
