@@ -6,4 +6,4 @@ Because the algorithm should not have access to any future data during the analy
 
 I have used  [Welford's algorithm](https://www.wikiwand.com/en/Algorithms_for_calculating_variance#/) to calculate a rolling mean and variance with high numerical stability. We start with mean and variance of zero, and then update these as we iterate through the datastream, using the sum of squares of differences from the current mean (denoted as M2 in the code).
 
-Finally, the outlier is determined as lying a configurable number of standard deviations (default 3) away from the sample mean.
+Finally, the outlier is determined as lying a configurable number of standard deviations (z-scores - default 3) away from the sample mean.
