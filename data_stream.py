@@ -2,9 +2,7 @@ import math
 from util import get_datetime
 
 class DataStream:
-    def __init__(self) -> None:
-        self.outliers = []
-        
+    def __init__(self) -> None:        
         self.n = 0
         self.mean = 0.0
         self.variance = 0.0
@@ -29,5 +27,4 @@ class DataStream:
     def check_if_outlier(self, z_scores=3):
         if not - z_scores <= (self.price - self.mean) / math.sqrt(self.variance) <= z_scores:
             outlier = (self.date, self.price)
-            self.outliers.append(outlier)
             return outlier
