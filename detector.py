@@ -5,9 +5,10 @@ import logging
 log = logging.getLogger(__name__)
 
 if __name__ == '__main__':
-    data_points = read_csv('data/Outliers.csv')
+    data_points = read_csv('data/full_data.csv')
     write_csv('data/clean_data.csv', 'Date', 'Price')
-    
+    write_csv('data/outlier_data.csv', 'Date', 'Price')
+
     stream = DataStream()
 
     for data in data_points:
@@ -19,5 +20,7 @@ if __name__ == '__main__':
         outlier = stream.check_if_outlier(number_of_standard_deviations=3)
         if outlier:
             log.info(outlier)
+            write_csv('data/outlier_data.csv', date, price)
+
         else:
             write_csv('data/clean_data.csv', date, price)
