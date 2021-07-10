@@ -26,8 +26,8 @@ class DataStream:
         else:
             self.variance = self.M2 / (self.n - 1)  # sample variance
 
-    def check_if_outlier(self, number_of_standard_deviations=3):
-        if not - number_of_standard_deviations <= (self.price - self.mean) / math.sqrt(self.variance) <= number_of_standard_deviations:
+    def check_if_outlier(self, z_scores=3):
+        if not - z_scores <= (self.price - self.mean) / math.sqrt(self.variance) <= z_scores:
             outlier = (self.date, self.price)
             self.outliers.append(outlier)
             return outlier
