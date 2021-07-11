@@ -27,7 +27,6 @@ class DataStream:
         if len(self.window) > 1:
             self.variance = variance(self.window)
 
-
     def check_if_outlier(self, z_scores=3):
         assert 0 < z_scores < 5, "Z score must be between 1-4!"  # 68–95–99.7 rule
         outlier = (self.date, self.price)
