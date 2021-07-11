@@ -3,7 +3,7 @@ from statistics import variance
 from util import get_datetime
 
 class DataStream:
-    def __init__(self, window_size) -> None:     
+    def __init__(self, window_size=25) -> None:     
         self.mean = 0.0
         self.variance = 0.0
 
