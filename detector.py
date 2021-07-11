@@ -1,6 +1,6 @@
-from util import read_csv, write_csv
-from data_stream import DataStream
 import logging
+from data_stream import DataStream
+from util import read_csv, write_csv
 
 log = logging.getLogger(__name__)
 
@@ -9,7 +9,7 @@ if __name__ == '__main__':
     write_csv('data/clean_data.csv', 'Date', 'Price')
     write_csv('data/outlier_data.csv', 'Date', 'Price')
 
-    stream = DataStream()
+    stream = DataStream(window_size=25)
 
     for data in data_points:
         date=data['Date']
