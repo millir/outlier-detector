@@ -2,12 +2,18 @@
 
 This application detects outlier data points, informs the user of the outliers found, and then writes a clean version of the data with the outlier points removed to file.
 
+## To Run:
+Run detector.py
+`python detector.py`
+
+## Intro
 Because the algorithm should not have access to any future data during the analysis of any given point, I have decided to go for a single pass approach to create this outlier detector. I have created a streamer class that updates its internal state with a new mean and variance for each new data point. By reading the input exactly once, our algorithm requires O(n) time, and since we eliminate the need for storing all of the historical data, it has O(1) storage. This should theoretically make the application extensible to much larger data streaming inputs.
 
 The outlier is determined as lying a configurable number of standard deviations (z-scores - default 3) away from the sample mean.
 
 I first implemented a cumulative approach, found it to not be flexible for longer timeseries data, and then created a moving sliding window with better results. These are on separate branches.
 
+The code is extensible to other data sources (database / remote processes) by changing the input in detector.py from read_csv to something else. We can extend to other algorithms by swapping for a different calculation function in datastream class.
 
 ## Moving average
 For this approach, I have created a sliding window of configurable length. This stores recent data from the stream, and pops values older than the window_size. The selection of the window_size affects the amount of smoothing: increasing the value of M improves the smoothing at the expense of accuracy. The sliding window allows us to pick up trends effectively.
